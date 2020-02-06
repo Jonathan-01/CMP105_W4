@@ -1,4 +1,6 @@
 #include "Level.h"
+#include "Player.h"
+
 
 Level::Level(sf::RenderWindow* hwnd, Input* in)
 {
@@ -28,12 +30,13 @@ void Level::handleInput(float dt)
 		window->close();
 	}
 
+	player1.handleInput(dt);
 }
 
 // Update game objects
 void Level::update(float dt)
 {
-	
+	player1.update(dt);
 }
 
 // Render level
@@ -42,6 +45,7 @@ void Level::render()
 	beginDraw();
 
 	window->draw(testSprite);
+	window->draw(player1);
 
 	endDraw();
 }
