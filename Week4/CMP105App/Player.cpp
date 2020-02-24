@@ -1,9 +1,6 @@
 #include "Player.h"
-Input* input;
 
 Player::Player() {
-	//velocity.x = 0;
-	//velocity.y = 0;
 }
 
 Player::~Player() {
@@ -12,19 +9,15 @@ Player::~Player() {
 
 void Player::handleInput(float dt) {
 	if (input->isKeyDown(sf::Keyboard::W)) {
-		setVelocity(0,-5);
-		input->setKeyUp(sf::Keyboard::W);
+		move(0,-50 *dt);
 	}
 	else if (input->isKeyDown(sf::Keyboard::A)) {
-		setVelocity(-5,0);
-		input->setKeyUp(sf::Keyboard::A);
+		move(-50 *dt,0);
 	}
 	else if (input->isKeyDown(sf::Keyboard::S)) {
-		setVelocity(0, 5);
-		input->setKeyUp(sf::Keyboard::S);
+		move(0, 50 *dt);
 	}
 	else if (input->isKeyDown(sf::Keyboard::D)) {
-		setVelocity(5, 0);
-		input->setKeyUp(sf::Keyboard::D);
+		move(50 *dt, 0);
 	}
 }

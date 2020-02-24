@@ -1,19 +1,23 @@
 #include "Level.h"
-#include "Player.h"
 
 
-Level::Level(sf::RenderWindow* hwnd, Input* in)
+Level::Level(sf::RenderWindow* hwnd, Input* in):map(hwnd)
 {
 	window = hwnd;
 	input = in;
 
 	// initialise game objects
-	texture.loadFromFile("gfx/Mushroom.png");
+	texture.loadFromFile("gfx/MushroomTrans.png");
+	player1.setTexture(&texture);
+	player1.setSize(sf::Vector2f(100, 100));
+	player1.setPosition(500, 500);
+	player1.setInput(input);
 
-	testSprite.setTexture(&texture);
-	testSprite.setSize(sf::Vector2f(100, 100));
-	testSprite.setPosition(100, 100);
-
+	backdrop.loadFromFile("gfx/Level1_1.png");
+	map.setTexture(&backdrop);
+	map.setSize(sf::Vector2f(11038, 675));
+	map.setPosition(0, 0);
+	map.setInput(input);
 }
 
 Level::~Level()
@@ -31,12 +35,14 @@ void Level::handleInput(float dt)
 	}
 
 	player1.handleInput(dt);
+	map.scrollMap(dt);
 }
 
 // Update game objects
 void Level::update(float dt)
 {
 	player1.update(dt);
+	map.update();
 }
 
 // Render level
@@ -44,7 +50,7 @@ void Level::render()
 {
 	beginDraw();
 
-	window->draw(testSprite);
+	window->draw(map);
 	window->draw(player1);
 
 	endDraw();

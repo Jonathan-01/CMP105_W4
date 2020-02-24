@@ -4,6 +4,7 @@
 #include "Framework/Input.h"
 #include "Framework/GameObject.h"
 #include "Player.h"
+#include "Map.h"
 #include <string.h>
 #include <iostream>
 
@@ -30,5 +31,6 @@ private:
 	GameObject testSprite;
 	sf::Texture texture;
 	Player player1;
-
+	sf::Texture backdrop;
+	Map map;
 };
